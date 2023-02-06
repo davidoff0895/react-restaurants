@@ -11,7 +11,8 @@ export interface Props {
 
 export function Component (WrappedComponent: React.ComponentType<Props>) {
   const Counter = (props: any) => {
-    const amountProps = useAmount(0);
+    const initAmount = props.amount || 0;
+    const amountProps = useAmount(initAmount);
 
     return <WrappedComponent {...props} {...amountProps} />;
   };

@@ -17,50 +17,40 @@
   cursor: pointer;
   transition: 0.2s all;
   text-transform: uppercase;
+  &:hover,&:focus,&:active {
+    border-color: var(--yellow-light);
+    background-color: var(--yellow-light);
+  }
+  + .button {
+    margin-left: 1px;
+  }
 }
 
-.button:hover,
-.button:focus,
-.button:active {
-  border-color: var(--yellow-light);
-  background-color: var(--yellow-light);
-}
-
-.button + button {
-  margin-left: 1px;
-}
-
-.button.primary {
+.primary {
   background-color: var(--orange);
   border: 1px solid var(--orange);
   color: var(--white);
+  &:hover,&:focus,&:active {
+    border-color: var(--orange-light);
+    background-color: var(--orange-light);
+  }
 }
 
-.button.secondary {
+.secondary {
   background-color: var(--grey-dark);
   border: 1px solid var(--grey-dark);
+  &:hover,&:focus,&:active {
+    border-color: var(--grey);
+    background-color: var(--grey);
+  }
 }
 
-.button.primary:hover,
-.button.primary:focus,
-.button.primary:active {
-  border-color: var(--orange-light);
-  background-color: var(--orange-light);
-}
-
-.button.secondary:hover,
-.button.secondary:focus,
-.button.secondary:active {
-  border-color: var(--grey);
-  background-color: var(--grey);
-}
-
-.button.small {
+.small {
   width: 20px;
   height: 20px;
 }
 
-.button.block {
+.block {
   display: block;
   width: 100%;
   padding: 11px 20px;

@@ -18,6 +18,7 @@
     "rules": {
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off",
         "react/react-in-jsx-scope": "off",
         "react/jsx-indent": ["warn", 2],
         "@typescript-eslint/no-unused-vars": "warn",

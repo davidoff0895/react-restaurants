@@ -1,0 +1,14 @@
+.tabs {
+  height: auto;
+  text-align: center;
+  padding: 12px;
+  background-color: var(--grey);
+  &__tab {
+    padding: 4px 12px;
+    color: var(--black);
+    cursor: pointer;
+  }
+  &__tab.active {
+    border-bottom: 1px solid var(--black);
+  }
+}

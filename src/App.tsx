@@ -1,7 +1,7 @@
 import React from 'react';
-import '@/App.css';
 import Restaurants from '@/components/Restaurants';
 import type { RestaurantEntity } from '@/types/restaurant';
+import Header from '@/components/common/Header';
 
 interface Props {
   restaurants: RestaurantEntity[]
@@ -9,7 +9,8 @@ interface Props {
 
 export default function App ({ restaurants }: Props) {
   return (
-    <div className="App">
+    <div className="app">
+      <Header />
       <Restaurants restaurants={restaurants} />
     </div>
   );
