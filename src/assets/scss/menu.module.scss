@@ -1,0 +1,26 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px;
+  padding-top: 12px;
+  > * {
+    padding: 12px 0;
+  }
+}
+
+@media all and (min-width: 768px) {
+  .menu {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 0;
+    > *:first-child {
+      flex: 1 0 calc(100% - 400px - 2 * 24px);
+    }
+    > *:last-child {
+      flex: 1 0 calc(400px - 24px);
+    }
+    > * {
+      padding: 0 12px;
+    }
+  }
+}

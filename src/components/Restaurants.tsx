@@ -1,7 +1,7 @@
-import Menu from '@/components/Menu';
 import { useState } from 'react';
 import type { RestaurantEntity } from '@/types/restaurant';
 import Tabs from '@/components/Tabs';
+import Restaurant from '@/components/Restaurant';
 
 interface Props {
   restaurants: RestaurantEntity[]
@@ -12,7 +12,7 @@ export default function Restaurants ({ restaurants }: Props) {
   return (
     <div>
       <Tabs tabs={restaurants} onchange={setActiveRestaurant} />
-      <Menu menu={activeRestaurant.menu} />
+      <Restaurant restaurant={activeRestaurant} />
     </div>
   );
 }

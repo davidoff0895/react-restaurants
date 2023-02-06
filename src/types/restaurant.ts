@@ -2,13 +2,13 @@ export interface RestaurantEntity {
   id: string
   name: string
   menu: MenuEntity[]
-  reviews?: ReviewsEntity[]
+  reviews: ReviewsEntity[]
 }
 export interface MenuEntity {
   id: string
   name: string
   price: number
-  ingredients?: string[]
+  ingredients: string[]
 }
 export interface ReviewsEntity {
   id: string

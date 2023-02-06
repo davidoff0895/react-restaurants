@@ -1,4 +1,5 @@
 import type { RestaurantEntity } from '@/types/restaurant';
+import styles from '@/assets/scss/tabs.module.scss';
 
 interface Props {
   tabs: RestaurantEntity[]
@@ -7,9 +8,15 @@ interface Props {
 
 export default function Tabs ({ tabs, onchange }: Props) {
   return (
-    <div>
+    <div className={styles.tabs}>
       {tabs.map((restaurant) =>
-        <button key={restaurant.id} onClick={() => { onchange(restaurant); }}>{restaurant.name}</button>
+        <span
+            key={restaurant.id}
+            onClick={() => { onchange(restaurant); }}
+            className={styles.tab}
+        >
+          {restaurant.name}
+        </span>
       )}
     </div>
   );
