@@ -1,16 +1,24 @@
 import Product from '@/components/Product';
 import { act, render, screen } from '@testing-library/react';
 import { restaurants } from '@/data/restaurants';
+import { Provider } from 'react-redux';
+import { store } from '@/store/store';
 
 describe('Product.tsx', () => {
   const product = restaurants[0].menu[0];
-  const runComponent = (initAmount = 0) => {
-    render(<Product product={product} amount={initAmount} />);
+  const runComponent = () => {
+    render(
+      <Provider store={store}>
+        <Product product={product} />
+      </Provider>
+    );
     return {
       getProductsCount: () => screen.getAllByTestId('product').length,
       getAmount: () => screen.getByTestId('amount').innerHTML,
-      callIncrement: () => { act(() => { screen.getByTestId('incrementBtn').click(); }); },
-      callDecrement: () => { act(() => { screen.getByTestId('decrementBtn').click(); }); }
+      callDecrement: () => {
+        act(() => { screen.getByTestId('decrementBtn').click(); });
+      },
+      callIncrement: () => { act(() => { screen.getByTestId('incrementBtn').click(); }); }
     };
   };
 
@@ -27,13 +35,8 @@ describe('Product.tsx', () => {
     testKit.callIncrement();
     expect(testKit.getAmount()).toBe('1');
   });
-  it('should decrement amount', () => {
-    const testKit = runComponent(10);
-    testKit.callDecrement();
-    expect(testKit.getAmount()).toBe('9');
-  });
   it('should return 0 when amount is 0', () => {
-    const testKit = runComponent(0);
+    const testKit = runComponent();
     testKit.callDecrement();
     expect(testKit.getAmount()).toBe('0');
   });

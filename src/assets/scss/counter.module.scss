@@ -1,0 +1,19 @@
+.counter {
+  padding: 5px 0;
+  text-align: center;
+  display: inline-block;
+  &__count {
+    color: var(--grey-dark);
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+  }
+}

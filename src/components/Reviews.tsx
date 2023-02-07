@@ -1,5 +1,5 @@
 import type { ReviewsEntity } from '@/types/restaurant';
-import Rate from '@/components/Rate';
+import Rate from '@/components/common/Rate';
 import styles from '@/assets/scss/reviews.module.scss';
 
 interface Props {

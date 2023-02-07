@@ -1,7 +1,7 @@
 import type { RestaurantEntity } from '@/types/restaurant';
 import Menu from '@/components/Menu';
 import Reviews from '@/components/Reviews';
-import Rate from '@/components/Rate';
+import Rate from '@/components/common/Rate';
 import Banner from '@/components/common/Banner';
 import { useMemo } from 'react';
 

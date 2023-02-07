@@ -17,7 +17,7 @@
   cursor: pointer;
   transition: 0.2s all;
   text-transform: uppercase;
-  &:hover,&:focus,&:active {
+  &:hover,&:active {
     border-color: var(--yellow-light);
     background-color: var(--yellow-light);
   }
@@ -30,7 +30,7 @@
   background-color: var(--orange);
   border: 1px solid var(--orange);
   color: var(--white);
-  &:hover,&:focus,&:active {
+  &:hover,&:active {
     border-color: var(--orange-light);
     background-color: var(--orange-light);
   }
@@ -39,7 +39,7 @@
 .secondary {
   background-color: var(--grey-dark);
   border: 1px solid var(--grey-dark);
-  &:hover,&:focus,&:active {
+  &:hover,&:active {
     border-color: var(--grey);
     background-color: var(--grey);
   }

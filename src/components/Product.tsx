@@ -1,9 +1,10 @@
-import * as Counter from '@/hocs/counter';
+import { ProductSlice, Props } from '@/hocs/ProductSlice';
 import Icon from '@/components/common/Icon';
 import styles from '@/assets/scss/product.module.scss';
 import btnStyles from '@/assets/scss/common/button.module.scss';
+import Counter from '@/components/common/Counter';
 
-function Product ({ product, amount, decrement, increment }: Counter.Props) {
+function Product ({ product, amount, increase, decrease }: Props) {
   const ingredients = product.ingredients?.join(', ');
 
   return (
@@ -16,24 +17,10 @@ function Product ({ product, amount, decrement, increment }: Counter.Props) {
             ${product.price}
           </div>
         </div>
-        <div>
-          <div className={styles.product__counter}>
-            <div className={styles.product__counter__count} data-testid="amount">
-              {amount}
-            </div>
-            <div className={styles.product__counter__buttons}>
-              <button className={btnStyles.button} onClick={decrement} data-testid="decrementBtn">
-                <Icon icon={'minus'}/>
-              </button>
-              <button className={btnStyles.button} onClick={increment} data-testid="incrementBtn">
-                <Icon icon={'plus'}/>
-              </button>
-            </div>
-          </div>
-        </div>
+        <div><Counter amount={amount} decrease={decrease} increase={increase} /></div>
       </div>
     </div>
   );
 }
 
-export default Counter.Component(Product);
+export default ProductSlice(Product);

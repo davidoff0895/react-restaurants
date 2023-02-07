@@ -33,32 +33,12 @@
       font-weight: 600;
       color: var(--yellow);
     }
-  }
-  &__counter {
-    padding: 5px 0;
-    text-align: center;
-    display: inline-block;
-    &__count {
-      color: var(--grey-dark);
-      font-weight: 600;
-      margin-bottom: 5px;
-      font-size: 18px;
-      line-height: 28px;
-    }
-    &__buttons {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      width: auto;
+    &__description {
+      font-size: 16px;
+      line-height: 24px;
+      margin: 0;
     }
   }
-}
-
-.description {
-  font-size: 16px;
-  line-height: 24px;
-  margin: 0;
 }
 
 @media all and (max-width: 767px) {
