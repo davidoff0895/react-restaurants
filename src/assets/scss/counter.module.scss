@@ -15,5 +15,18 @@
     justify-content: space-between;
     align-items: center;
     width: auto;
+    &__group, &__total {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+.compact.counter {
+  .counter__buttons__group {
+    margin-right: 5px;
+    width: 60px;
+  }
+  .counter__buttons__total {
+    width: 60px;
   }
 }

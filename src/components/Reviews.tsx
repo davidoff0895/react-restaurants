@@ -11,16 +11,16 @@ export default function Reviews ({ reviews }: Props) {
     <div className={styles.reviews}>
       {reviews.map((review) =>
         <div key={review.id} className={styles.reviews__review}>
-          <div className={styles.reviews__review_content}>
+          <div className={styles.reviews__review__content}>
             <div>
-              <h4 className={styles.reviews__review_content__name}>
+              <h4 className={styles.reviews__review__content__name}>
                 {review.user}
               </h4>
-              <p className={styles.reviews__review_content__comment}>
+              <p className={styles.reviews__review__content__comment}>
                 {review.text}
               </p>
             </div>
-            <div className={styles.reviews__review_content__rate}>
+            <div className={styles.reviews__review__content__rate}>
               <Rate value={review.rating} />
             </div>
           </div>

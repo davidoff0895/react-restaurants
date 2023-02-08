@@ -1,9 +1,11 @@
 import styles from '@/assets/scss/common/tabs.module.scss';
 import cn from 'classnames';
 
+interface Tab { id: string, name: string };
+
 interface Props {
-  tabs: any[]
-  activeTab: any
+  tabs: Tab[]
+  activeTab: Tab
   onchange: (tab: any) => void
 }
 

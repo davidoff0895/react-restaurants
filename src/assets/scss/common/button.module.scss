@@ -35,6 +35,15 @@
     background-color: var(--orange-light);
   }
 }
+.red {
+  background-color: var(--red);
+  border: 1px solid var(--red);
+  color: var(--white);
+  &:hover,&:active {
+    border-color: var(--red-light);
+    background-color: var(--red-light);
+  }
+}
 
 .secondary {
   background-color: var(--grey-dark);

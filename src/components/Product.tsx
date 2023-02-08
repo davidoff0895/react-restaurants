@@ -1,7 +1,5 @@
 import { ProductSlice, Props } from '@/hocs/ProductSlice';
-import Icon from '@/components/common/Icon';
 import styles from '@/assets/scss/product.module.scss';
-import btnStyles from '@/assets/scss/common/button.module.scss';
 import Counter from '@/components/common/Counter';
 
 function Product ({ product, amount, increase, decrease }: Props) {
@@ -17,7 +15,9 @@ function Product ({ product, amount, increase, decrease }: Props) {
             ${product.price}
           </div>
         </div>
-        <div><Counter amount={amount} decrease={decrease} increase={increase} /></div>
+        <div>
+          <Counter amount={amount} decrease={decrease} increase={increase} />
+        </div>
       </div>
     </div>
   );

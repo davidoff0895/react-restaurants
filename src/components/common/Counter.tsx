@@ -1,28 +1,43 @@
 import styles from '@/assets/scss/counter.module.scss';
-import btnStyles from '@/assets/scss/common/button.module.scss';
-import Icon from '@/components/common/Icon';
+import Button from '@/components/common/Button';
+import { btnColors } from '@/consts/button';
+import cn from 'classnames';
 
 interface Props {
-  amount: number
   decrease: () => void
   increase: () => void
+  total?: number
+  clear?: () => void
+  compact?: boolean
+  amount?: number
+  children?: any
 }
 
-export default function Counter ({ decrease, increase, amount }: Props) {
+export default function Counter ({
+  decrease,
+  increase,
+  amount,
+  compact = false,
+  children,
+  clear,
+  total
+}: Props) {
+  const btnColor = compact ? btnColors.SECONDARY : btnColors.DEFAULT;
   return (
-    <div className={styles.counter}>
-      <div className={styles.counter__count} data-testid="amount">
+    <div className={cn(styles.counter, { [styles.compact]: compact })}>
+      {!clear && <div className={styles.counter__count} data-testid="amount">
         {amount}
-      </div>
+      </div>}
       <div className={styles.counter__buttons}>
-        <button className={btnStyles.button} onClick={decrease}
-                    data-testid="decrementBtn">
-          <Icon icon={'minus'}/>
-        </button>
-        <button className={btnStyles.button} onClick={increase}
-                    data-testid="incrementBtn">
-          <Icon icon={'plus'}/>
-        </button>
+        <div className={styles.counter__buttons__group}>
+          <Button onClick={decrease} data-testid="decrementBtn" icon="minus" small={compact} color={btnColor} />
+          {children}
+          <Button onClick={increase} data-testid="incrementBtn" icon="plus" small={compact} color={btnColor} />
+        </div>
+        {clear && <div className={styles.counter__buttons__total}>
+          ${total}
+          <Button onClick={clear} data-testid="clear" icon="delete" small={compact} color={btnColors.RED} />
+        </div>}
       </div>
     </div>
   );
