@@ -8,15 +8,13 @@ export const slice = createSlice({
   name: 'restaurants',
   initialState,
   reducers: {
-    setActiveRestaurant: (state, { payload: restaurant }: PayloadAction<RestaurantEntity>) => {
-      state.activeRestaurant = restaurant;
+    setActiveRestaurantId: (state, { payload: restaurant }: PayloadAction<RestaurantEntity>) => {
+      state.activeRestaurantId = restaurant.id;
     },
     addReview: (state, { payload: userReview }: PayloadAction<UserReviewDto>) => {
-      // to keep added review between restaurant tabs
-      const activeRestaurantIndex = state.list.findIndex(({ id }) => id === state.activeRestaurant.id);
-      state.list[activeRestaurantIndex] = state.activeRestaurant;
+      const restaurant = state.list.find(({ id }) => id === state.activeRestaurantId)!;
 
-      state.activeRestaurant.reviews.push({
+      restaurant.reviews.push({
         id: uuidv4(),
         user: {
           id: uuidv4(),
@@ -29,6 +27,6 @@ export const slice = createSlice({
   }
 });
 
-export const { setActiveRestaurant, addReview } = slice.actions;
+export const { setActiveRestaurantId, addReview } = slice.actions;
 
 export default slice.reducer;

@@ -3,10 +3,10 @@ import styles from '@/assets/scss/menu.module.scss';
 import Basket from '@/components/Basket';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { activeRestaurant } from '@/store/restaurants/selector';
 
 export default function Menu () {
-  const { menu } = useSelector(({ restaurants }: RootState) => restaurants.activeRestaurant);
+  const { menu } = useSelector(activeRestaurant);
   return (
     <div className={styles.menu}>
       <div>
