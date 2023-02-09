@@ -12,7 +12,11 @@ export interface MenuEntity {
 }
 export interface ReviewsEntity {
   id: string
-  user: string
+  user: UserEntity
   text: string
   rating: number
+}
+export interface UserEntity {
+  id: string
+  name: string
 }

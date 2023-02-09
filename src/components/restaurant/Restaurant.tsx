@@ -1,16 +1,14 @@
-import type { RestaurantEntity } from '@/types/restaurant';
 import Menu from '@/components/Menu';
-import Reviews from '@/components/Reviews';
+import Reviews from '@/components/review/Reviews';
 import Rate from '@/components/common/Rate';
 import Banner from '@/components/common/Banner';
 import { useMemo, useState } from 'react';
 import Tabs from '@/components/common/Tabs';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
-interface Props {
-  restaurant: RestaurantEntity
-}
-
-export default function Restaurant ({ restaurant }: Props) {
+export default function Restaurant () {
+  const restaurant = useSelector(({ restaurants }: RootState) => restaurants.activeRestaurant);
   const averageRate = useMemo(() => {
     const rateSum = restaurant.reviews.reduce((sum, { rating }) => sum + rating, 0);
     return Math.round(rateSum / restaurant.reviews.length);
@@ -23,8 +21,8 @@ export default function Restaurant ({ restaurant }: Props) {
       <Banner heading={restaurant.name}>
         <Rate value={averageRate}/>
       </Banner>
-      <Tabs tabs={tabs} activeTab={activeTab} onchange={setActiveTab} />
-      {activeTab.name === 'Menu' ? <Menu menu={restaurant.menu}/> : <Reviews reviews={restaurant.reviews}/>}
+      <Tabs tabs={tabs} activeTab={activeTab} onchange={setActiveTab}/>
+      {activeTab.name === 'Menu' ? <Menu /> : <Reviews key={restaurant.id} />}
     </div>
   );
 }

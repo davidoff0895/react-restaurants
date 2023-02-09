@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from '@/App';
-import { restaurants } from '@/data/restaurants';
+import { Provider } from 'react-redux';
+import { store } from '@/store/store';
 
 test('renders learn react link', () => {
-  render(<App restaurants={restaurants} />);
+  render(<Provider store={store}><App /></Provider>);
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });

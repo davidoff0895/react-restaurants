@@ -1,14 +1,12 @@
 import Product from '@/components/Product';
-import type { MenuEntity } from '@/types/restaurant';
 import styles from '@/assets/scss/menu.module.scss';
 import Basket from '@/components/Basket';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
-interface Props {
-  menu: MenuEntity[]
-}
-
-export default function Menu ({ menu }: Props) {
+export default function Menu () {
+  const { menu } = useSelector(({ restaurants }: RootState) => restaurants.activeRestaurant);
   return (
     <div className={styles.menu}>
       <div>
