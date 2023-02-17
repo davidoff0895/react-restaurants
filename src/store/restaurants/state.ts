@@ -1,7 +1,8 @@
 import type { RestaurantsState } from '@/store/restaurants/types';
-import { restaurants } from '@/data/restaurants';
+import { LoadStatuses } from '@/consts/LoadStatuses';
 
 export const initialState: RestaurantsState = {
-  list: restaurants,
-  activeRestaurantId: restaurants[0].id
+  status: LoadStatuses.NOT_INITIAL,
+  list: [],
+  activeRestaurantId: ''
 };

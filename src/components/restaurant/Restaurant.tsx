@@ -4,11 +4,11 @@ import Rate from '@/components/common/Rate';
 import Banner from '@/components/common/Banner';
 import { useMemo, useState } from 'react';
 import Tabs from '@/components/common/Tabs';
-import { useSelector } from 'react-redux';
 import { activeRestaurant } from '@/store/restaurants/selector';
+import { useAppSelector } from '@/store/hooks';
 
 export default function Restaurant () {
-  const restaurant = useSelector(activeRestaurant);
+  const restaurant = useAppSelector(activeRestaurant);
   const averageRate = useMemo(() => {
     const rateSum = restaurant.reviews.reduce((sum, { rating }) => sum + rating, 0);
     return Math.round(rateSum / restaurant.reviews.length);

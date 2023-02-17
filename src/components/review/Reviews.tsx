@@ -1,11 +1,11 @@
 import Rate from '@/components/common/Rate';
 import styles from '@/assets/scss/reviews.module.scss';
 import ReviewForm from '@/components/review/ReviewForm';
-import { useSelector } from 'react-redux';
 import { activeRestaurant } from '@/store/restaurants/selector';
+import { useAppSelector } from '@/store/hooks';
 
 export default function Reviews () {
-  const { reviews } = useSelector(activeRestaurant);
+  const { reviews } = useAppSelector(activeRestaurant);
   return (
     <div className={styles.reviews}>
       {reviews.map((review) =>

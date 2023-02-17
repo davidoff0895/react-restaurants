@@ -2,11 +2,11 @@ import Product from '@/components/Product';
 import styles from '@/assets/scss/menu.module.scss';
 import Basket from '@/components/Basket';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { activeRestaurant } from '@/store/restaurants/selector';
+import { useAppSelector } from '@/store/hooks';
 
 export default function Menu () {
-  const { menu } = useSelector(activeRestaurant);
+  const { menu } = useAppSelector(activeRestaurant);
   return (
     <div className={styles.menu}>
       <div>

@@ -1,8 +1,7 @@
 import React from 'react';
 import type { MenuEntity } from '@/types/restaurant';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
 import { addProduct, removeProduct } from '@/store/order/reducer';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 export interface Props {
   product: MenuEntity
@@ -13,9 +12,9 @@ export interface Props {
 
 export function ProductSlice (WrappedComponent: React.ComponentType<Props>) {
   const Slice = ({ product }: { product: MenuEntity }) => {
-    const orderedProduct = useSelector(({ order }: RootState) => order.products[product.id]);
+    const orderedProduct = useAppSelector(({ order }) => order.products[product.id]);
     const amount = orderedProduct?.amount || 0;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const decrease = () => dispatch(removeProduct(product));
     const increase = () => dispatch(addProduct(product));

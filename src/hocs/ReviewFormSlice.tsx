@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { addReview } from '@/store/restaurants/reducer';
 import { UserReviewDto } from '@/types/user';
+import { useAppDispatch } from '@/store/hooks';
 
 export interface Props {
   user: UserReviewDto
@@ -13,7 +13,7 @@ export interface Props {
 
 export function ReviewFormSlice (WrappedComponent: React.ComponentType<Props>) {
   const Slice = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const [user, setUser] = useState({
       name: '',
@@ -26,6 +26,11 @@ export function ReviewFormSlice (WrappedComponent: React.ComponentType<Props>) {
     const submit = () => {
       if (user.name) {
         dispatch(addReview(user));
+        setUser({
+          name: '',
+          review: '',
+          rate: 0
+        });
       }
     };
 

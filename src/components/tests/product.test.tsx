@@ -1,6 +1,6 @@
 import Product from '@/components/Product';
 import { act, render, screen } from '@testing-library/react';
-import { restaurants } from '@/data/restaurants';
+import { restaurants } from 'simple_api/api/mock';
 import { Provider } from 'react-redux';
 import { store } from '@/store/store';
 

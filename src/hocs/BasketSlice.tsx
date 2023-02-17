@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from '@/store/store';
 import { addProduct, removeProduct, clearProduct } from '@/store/order/reducer';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 interface Product {
   id: string
@@ -20,7 +19,7 @@ export interface Props {
 
 export function BasketSlice (WrappedComponent: React.ComponentType<Props>) {
   const Slice = () => {
-    const products = useSelector(({ order }: RootState) => order.products);
+    const products = useAppSelector(({ order }) => order.products);
     const order = useMemo(() => Object.values(products).map(({ id, name, amount, price }) => ({
       id,
       name,
@@ -28,7 +27,7 @@ export function BasketSlice (WrappedComponent: React.ComponentType<Props>) {
       total: price * amount
     })), [products]);
     const totalSum = useMemo(() => order.reduce((sum, { total }) => sum + total, 0), [order]);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const decrease = (id: string) => dispatch(removeProduct(products[id]));
     const increase = (id: string) => dispatch(addProduct(products[id]));

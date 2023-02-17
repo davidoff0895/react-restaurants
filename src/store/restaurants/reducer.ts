@@ -1,8 +1,17 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialState } from '@/store/restaurants/state';
 import { RestaurantEntity } from '@/types/restaurant';
 import { v4 as uuidv4 } from 'uuid';
 import { UserReviewDto } from '@/types/user';
+import { httpClient } from '@/api';
+import { LoadStatuses } from '@/consts/LoadStatuses';
+
+export const asyncGetRestaurants = createAsyncThunk(
+  'restaurants/getRestaurants',
+  async (): Promise<RestaurantEntity[]> => {
+    return await httpClient.get('restaurants');
+  }
+);
 
 export const slice = createSlice({
   name: 'restaurants',
@@ -24,6 +33,20 @@ export const slice = createSlice({
         rating: userReview.rate
       });
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(asyncGetRestaurants.pending, (state) => {
+        state.status = LoadStatuses.PENDING;
+      })
+      .addCase(asyncGetRestaurants.fulfilled, (state, { payload }) => {
+        state.status = LoadStatuses.SUCCESS;
+        state.list = payload;
+        state.activeRestaurantId = payload[0].id;
+      })
+      .addCase(asyncGetRestaurants.rejected, (state) => {
+        state.status = LoadStatuses.FAILED;
+      });
   }
 });
 
