@@ -1,16 +1,16 @@
 import Product from '@/components/Product';
 import styles from '@/assets/scss/menu.module.scss';
 import Basket from '@/components/Basket';
-import React from 'react';
-import { activeRestaurant } from '@/store/restaurants/selector';
-import { useAppSelector } from '@/store/hooks';
+import getActiveRestaurant from '@/hoocs/activeRestaurant';
+import { ProductEntity } from '@/types/restaurant';
 
 export default function Menu () {
-  const { menu } = useAppSelector(activeRestaurant);
+  const { menu, id } = getActiveRestaurant();
+  const products: ProductEntity[] = menu.map((m) => ({ ...m, restaurantId: id }));
   return (
     <div className={styles.menu}>
       <div>
-        {menu.map((product) => <Product key={product.id} product={product} />)}
+        {products.map((product) => <Product key={product.id} product={product} />)}
       </div>
       <Basket />
     </div>

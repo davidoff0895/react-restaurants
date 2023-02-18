@@ -1,28 +1,25 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Menu from '@/components/Menu';
 import Reviews from '@/components/review/Reviews';
 import Rate from '@/components/common/Rate';
 import Banner from '@/components/common/Banner';
-import { useMemo, useState } from 'react';
+import { RestaurantSlice, Props } from '@/hocs/RestaurantSlice';
 import Tabs from '@/components/common/Tabs';
-import { activeRestaurant } from '@/store/restaurants/selector';
-import { useAppSelector } from '@/store/hooks';
 
-export default function Restaurant () {
-  const restaurant = useAppSelector(activeRestaurant);
-  const averageRate = useMemo(() => {
-    const rateSum = restaurant.reviews.reduce((sum, { rating }) => sum + rating, 0);
-    return Math.round(rateSum / restaurant.reviews.length);
-  }, [restaurant.reviews]);
-  const tabs = [{ id: '1', name: 'Menu' }, { id: '2', name: 'Reviews' }];
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-
+function Restaurant ({ restaurant, averageRate, tabs }: Props) {
   return (
     <div>
       <Banner heading={restaurant.name}>
         <Rate value={averageRate}/>
       </Banner>
-      <Tabs tabs={tabs} activeTab={activeTab} onchange={setActiveTab}/>
-      {activeTab.name === 'Menu' ? <Menu /> : <Reviews key={restaurant.id} />}
+      <Tabs tabs={tabs} />
+      <Routes>
+        <Route path="menu" element={<Menu />}/>
+        <Route path="reviews" element={<Reviews />}/>
+        <Route path="/" element={<Navigate to="menu" replace />} />
+      </Routes>
     </div>
   );
 }
+
+export default RestaurantSlice(Restaurant);

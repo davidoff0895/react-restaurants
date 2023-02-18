@@ -7,6 +7,7 @@ interface Product {
   name: string
   amount: number
   total: number
+  url: string
 }
 
 export interface Props {
@@ -20,11 +21,12 @@ export interface Props {
 export function BasketSlice (WrappedComponent: React.ComponentType<Props>) {
   const Slice = () => {
     const products = useAppSelector(({ order }) => order.products);
-    const order = useMemo(() => Object.values(products).map(({ id, name, amount, price }) => ({
+    const order = useMemo(() => Object.values(products).map(({ id, name, amount, price, restaurantId }) => ({
       id,
       name,
       amount,
-      total: price * amount
+      total: price * amount,
+      url: `/restaurants/${restaurantId}/menu`
     })), [products]);
     const totalSum = useMemo(() => order.reduce((sum, { total }) => sum + total, 0), [order]);
     const dispatch = useAppDispatch();
@@ -41,7 +43,7 @@ export function BasketSlice (WrappedComponent: React.ComponentType<Props>) {
         clear={clear}
     />;
   };
-  Slice.displayName = 'ProductSlice';
+  Slice.displayName = 'BasketSlice';
 
   return Slice;
 }

@@ -17,20 +17,20 @@ export const slice = createSlice({
   name: 'restaurants',
   initialState,
   reducers: {
-    setActiveRestaurantId: (state, { payload: restaurant }: PayloadAction<RestaurantEntity>) => {
-      state.activeRestaurantId = restaurant.id;
-    },
-    addReview: (state, { payload: userReview }: PayloadAction<UserReviewDto>) => {
-      const restaurant = state.list.find(({ id }) => id === state.activeRestaurantId)!;
+    addReview: (state, { payload }: PayloadAction<{
+      userReview: UserReviewDto
+      restaurantId: string
+    }>) => {
+      const restaurant = state.list.find(({ id }) => id === payload.restaurantId)!;
 
       restaurant.reviews.push({
         id: uuidv4(),
         user: {
           id: uuidv4(),
-          name: userReview.name
+          name: payload.userReview.name
         },
-        text: userReview.review,
-        rating: userReview.rate
+        text: payload.userReview.review,
+        rating: payload.userReview.rate
       });
     }
   },
@@ -42,7 +42,6 @@ export const slice = createSlice({
       .addCase(asyncGetRestaurants.fulfilled, (state, { payload }) => {
         state.status = LoadStatuses.SUCCESS;
         state.list = payload;
-        state.activeRestaurantId = payload[0].id;
       })
       .addCase(asyncGetRestaurants.rejected, (state) => {
         state.status = LoadStatuses.FAILED;
@@ -50,6 +49,6 @@ export const slice = createSlice({
   }
 });
 
-export const { setActiveRestaurantId, addReview } = slice.actions;
+export const { addReview } = slice.actions;
 
 export default slice.reducer;

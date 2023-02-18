@@ -23,10 +23,11 @@
         "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/no-dynamic-delete": "off",
         "@typescript-eslint/restrict-plus-operands": "off",
+        "@typescript-eslint/semi": ["error", "always"],
+        "@typescript-eslint/no-unused-vars": "warn",
         "react/react-in-jsx-scope": "off",
         "react/jsx-indent": ["warn", 2],
-        "@typescript-eslint/no-unused-vars": "warn",
         "semi": "off",
-        "@typescript-eslint/semi": ["error", "always"]
+        "no-debugger": "warn"
     }
 }

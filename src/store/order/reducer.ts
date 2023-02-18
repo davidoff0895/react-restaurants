@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialState } from '@/store/order/state';
-import type { MenuEntity } from '@/types/restaurant';
+import type { ProductEntity } from '@/types/restaurant';
 
 export const slice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    addProduct: ({ products }, { payload: product }: PayloadAction<MenuEntity>) => {
+    addProduct: ({ products }, { payload: product }: PayloadAction<ProductEntity>) => {
       const amount: number = products[product.id]?.amount || 0;
       products[product.id] = { ...product, amount: amount + 1 };
     },
-    removeProduct: ({ products }, { payload: product }: PayloadAction<MenuEntity>) => {
+    removeProduct: ({ products }, { payload: product }: PayloadAction<ProductEntity>) => {
       const amount: number = products[product.id]?.amount;
       if (amount > 1) {
         products[product.id] = { ...product, amount: amount - 1 };

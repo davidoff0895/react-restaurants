@@ -1,19 +1,18 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Tabs from '@/components/common/Tabs';
 import Restaurant from '@/components/restaurant/Restaurant';
-import { setActiveRestaurantId } from '@/store/restaurants/reducer';
-import { RestaurantEntity } from '@/types/restaurant';
-import { activeRestaurant } from '@/store/restaurants/selector';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { Props, RestaurantsSlice } from '@/hocs/RestaurantsSlice';
 
-export default function Restaurants () {
-  const dispatch = useAppDispatch();
-  const { list: restaurants } = useAppSelector(({ restaurants }) => restaurants);
-  const restaurant = useAppSelector(activeRestaurant);
-  const changeTab = (restaurant: RestaurantEntity) => dispatch(setActiveRestaurantId(restaurant));
+function Restaurants ({ tabs, restaurants }: Props) {
   return (
     <div>
-      <Tabs tabs={restaurants} activeTab={restaurant} onchange={changeTab} />
-      <Restaurant />
+      <Tabs tabs={tabs} />
+      <Routes>
+        <Route path=":id/*" element={<Restaurant />}/>
+        <Route path="/" element={<Navigate to={restaurants[0].id} replace />} />
+      </Routes>
     </div>
   );
 }
+
+export default RestaurantsSlice(Restaurants);

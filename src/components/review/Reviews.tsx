@@ -1,11 +1,10 @@
 import Rate from '@/components/common/Rate';
 import styles from '@/assets/scss/reviews.module.scss';
 import ReviewForm from '@/components/review/ReviewForm';
-import { activeRestaurant } from '@/store/restaurants/selector';
-import { useAppSelector } from '@/store/hooks';
+import getActiveRestaurant from '@/hoocs/activeRestaurant';
 
 export default function Reviews () {
-  const { reviews } = useAppSelector(activeRestaurant);
+  const { reviews } = getActiveRestaurant();
   return (
     <div className={styles.reviews}>
       {reviews.map((review) =>

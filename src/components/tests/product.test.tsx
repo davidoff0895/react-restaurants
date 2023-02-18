@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from '@/store/store';
 
 describe('Product.tsx', () => {
-  const product = restaurants[0].menu[0];
+  const product = { ...restaurants[0].menu[0], restaurantId: restaurants[0].id };
   const runComponent = () => {
     render(
       <Provider store={store}>

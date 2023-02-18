@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import Counter from '@/components/common/Counter';
 import { BasketSlice, Props } from '@/hocs/BasketSlice';
 import styles from '@/assets/scss/basket.module.scss';
@@ -13,9 +14,9 @@ function Basket ({ order, totalSum, decrease, increase, clear }: Props) {
   return (
     <div className={styles.basket}>
       <h4 className={styles.basket__title}>Basket</h4>
-      {order.map(({ id, name, amount, total }) =>
+      {order.map(({ id, name, amount, total, url }) =>
         <div key={id} className={styles.basket__item}>
-          <div className={styles.basket__item__name}>{name}</div>
+          <NavLink key={id} to={url} className={styles.basket__item__name}>{name}</NavLink>
           <Counter
               compact
               total={total}

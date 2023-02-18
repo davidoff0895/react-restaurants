@@ -20,3 +20,6 @@ export interface UserEntity {
   id: string
   name: string
 }
+export interface ProductEntity extends MenuEntity {
+  restaurantId: string
+}

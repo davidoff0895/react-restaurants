@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { addReview } from '@/store/restaurants/reducer';
 import { UserReviewDto } from '@/types/user';
 import { useAppDispatch } from '@/store/hooks';
+import getActiveRestaurant from '@/hoocs/activeRestaurant';
 
 export interface Props {
   user: UserReviewDto
@@ -14,6 +15,7 @@ export interface Props {
 export function ReviewFormSlice (WrappedComponent: React.ComponentType<Props>) {
   const Slice = () => {
     const dispatch = useAppDispatch();
+    const { id: restId } = getActiveRestaurant();
 
     const [user, setUser] = useState({
       name: '',
@@ -25,7 +27,7 @@ export function ReviewFormSlice (WrappedComponent: React.ComponentType<Props>) {
     const onRate = (value: number) => { setUser({ ...user, rate: value }); };
     const submit = () => {
       if (user.name) {
-        dispatch(addReview(user));
+        dispatch(addReview({ userReview: user, restaurantId: restId }));
         setUser({
           name: '',
           review: '',
@@ -42,7 +44,7 @@ export function ReviewFormSlice (WrappedComponent: React.ComponentType<Props>) {
         submit={submit}
     />;
   };
-  Slice.displayName = 'ProductSlice';
+  Slice.displayName = 'ReviewFormSlice';
 
   return Slice;
 }

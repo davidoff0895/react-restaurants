@@ -3,6 +3,5 @@ import { LoadStatuses } from '@/consts/LoadStatuses';
 
 export const initialState: RestaurantsState = {
   status: LoadStatuses.NOT_INITIAL,
-  list: [],
-  activeRestaurantId: ''
+  list: []
 };

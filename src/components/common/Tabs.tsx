@@ -1,26 +1,25 @@
 import styles from '@/assets/scss/common/tabs.module.scss';
-import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 
-interface Tab { id: string, name: string };
+interface Tab { label: string, url: string }
 
 interface Props {
   tabs: Tab[]
-  activeTab: Tab
-  onchange: (tab: any) => void
 }
 
-export default function Tabs ({ tabs, onchange, activeTab }: Props) {
-  const isActive = ({ id }: any) => id === activeTab.id;
+export default function Tabs ({ tabs }: Props) {
   return (
     <div className={styles.tabs}>
-      {tabs.map((tab) =>
-        <span
-            key={tab.id}
-            onClick={() => { onchange(tab); }}
-            className={cn(styles.tabs__tab, { [styles.active]: isActive(tab) })}
-        >
-          {tab.name}
-        </span>
+      {tabs.map(({ label, url }) =>
+        <NavLink
+              to={url}
+              key={label}
+              className={({ isActive }) =>
+                isActive ? `${styles.tabs__tab} ${styles.active}` : styles.tabs__tab
+              }
+          >
+          {label}
+        </NavLink>
       )}
     </div>
   );
