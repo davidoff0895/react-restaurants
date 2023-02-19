@@ -1,6 +1,19 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialState } from '@/store/order/state';
 import type { ProductEntity } from '@/types/restaurant';
+import { httpClient } from '@/api';
+import { IOrder } from '@/store/order/types';
+import { LoadStatuses } from '@/consts/LoadStatuses';
+import { v4 as uuidv4 } from 'uuid';
+
+export const asyncSendOrder = createAsyncThunk(
+  'order/sendOrder',
+  async (order: IOrder) => {
+    const data = Object.values(order)
+      .map(({ id, amount, restaurantId }) => ({ id, amount, restaurantId }));
+    return await httpClient.post('order', data);
+  }
+);
 
 export const slice = createSlice({
   name: 'order',
@@ -21,6 +34,20 @@ export const slice = createSlice({
     clearProduct: ({ products }, { payload: id }: PayloadAction<string>) => {
       delete products[id];
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(asyncSendOrder.pending, (state) => {
+        state.orderStatus = LoadStatuses.PENDING;
+      })
+      .addCase(asyncSendOrder.fulfilled, (state) => {
+        state.orderStatus = LoadStatuses.SUCCESS;
+        state.products = {};
+        state.finishedOrderId = uuidv4();
+      })
+      .addCase(asyncSendOrder.rejected, (state) => {
+        state.orderStatus = LoadStatuses.FAILED;
+      });
   }
 });
 

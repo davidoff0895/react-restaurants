@@ -2,8 +2,11 @@ import { NavLink } from 'react-router-dom';
 import Counter from '@/components/common/Counter';
 import { BasketSlice, Props } from '@/hocs/BasketSlice';
 import styles from '@/assets/scss/basket.module.scss';
+import Button from '@/components/common/Button';
+import { btnColors } from '@/consts/button';
+import { LoadStatuses } from '@/consts/LoadStatuses';
 
-function Basket ({ order, totalSum, decrease, increase, clear }: Props) {
+function Basket ({ order, totalSum, decrease, increase, clear, createOrder, orderStatus }: Props) {
   if (!totalSum) {
     return (
       <div className={styles.basket}>
@@ -38,6 +41,16 @@ function Basket ({ order, totalSum, decrease, increase, clear }: Props) {
         <div className={styles.info}>
           <p>${totalSum}</p>
         </div>
+      </div>
+      <div>
+        <Button
+            block
+            disabled={orderStatus === LoadStatuses.PENDING}
+            color={btnColors.PRIMARY}
+            onClick={createOrder}
+        >
+          order
+        </Button>
       </div>
     </div>
   );

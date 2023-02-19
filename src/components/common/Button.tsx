@@ -2,7 +2,7 @@ import { btnColors } from '@/consts/button';
 import styles from '@/assets/scss/common/button.module.scss';
 import cn from 'classnames';
 import Icon from '@/components/common/Icon';
-import { DOMAttributes } from 'react';
+import { ButtonHTMLAttributes, HTMLAttributes } from 'react';
 
 interface Props {
   children?: any
@@ -19,7 +19,7 @@ export default function Button ({
   color = btnColors.DEFAULT,
   small = false,
   ...props
-}: Props & DOMAttributes<any>) {
+}: Props & ButtonHTMLAttributes<any> & HTMLAttributes<any>) {
   return (
     <button
         className={cn(styles.button, styles[color], {

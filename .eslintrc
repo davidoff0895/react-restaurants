@@ -25,6 +25,7 @@
         "@typescript-eslint/restrict-plus-operands": "off",
         "@typescript-eslint/semi": ["error", "always"],
         "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-misused-promises": "off",
         "react/react-in-jsx-scope": "off",
         "react/jsx-indent": ["warn", 2],
         "semi": "off",

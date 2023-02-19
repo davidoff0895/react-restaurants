@@ -6,4 +6,8 @@ router.get('/restaurants', (req, res) => {
   reply(res, restaurants);
 });
 
+router.post('/order', function (req, res) {
+  return reply(res, 'ok', 3000);
+});
+
 module.exports = router;
