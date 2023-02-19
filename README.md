@@ -4,5 +4,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Start the project
 
-####Start frontend: `yarn start`
-####Start backend: `cd simple_api && yarn start`
+#### Start frontend: `yarn start`
+#### Start backend: `cd simple_api && yarn start`
