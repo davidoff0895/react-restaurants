@@ -7,4 +7,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 #### Start frontend: `yarn start`
 #### Start backend: `cd simple_api && yarn start`
 ## Preview
-<img width="1904" alt="Screenshot 2023-02-19 at 18 12 30" src="https://user-images.githubusercontent.com/29586170/219957004-f0ac0280-4b17-4dff-8e80-a2c223f46fad.png">
+<img width="1667" alt="Screenshot 2023-02-19 at 18 15 08" src="https://user-images.githubusercontent.com/29586170/219957069-ad9d0c22-0e5e-464b-9d9b-8dc0b7333813.png">
